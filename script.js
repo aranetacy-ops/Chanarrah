@@ -13,10 +13,10 @@ const SIGNED = "— ☺️";
 
 // 📷 Put your pictures in a "photos" folder next to this file and list them here
 const PHOTOS = [
-  { src: "photos/1.jpg", caption: "" },
-  { src: "photos/2.jpg", caption: "" },
-  { src: "photos/3.jpg", caption: "" },
-  { src: "photos/4.jpg", caption: ""}
+  { src: "1.jpg", caption: "" },
+  { src: "2.jpg", caption: "" },
+  { src: "3.jpg", caption: "" },
+  { src: "4.jpg", caption: ""}
 ];
 
 // 🎵 Put your song in a "music" folder next to this file and set its name here
