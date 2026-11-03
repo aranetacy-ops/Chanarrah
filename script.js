@@ -9,15 +9,9 @@ const LETTER = [
   "Humana ra imong exam kay badminton na pud ta HAHAHA. bitaw chaaa padayon ra simong pag tuon, maka pressure sa? kita bitaw namo imong paningkamot Cha, Padayon ra gyud.",
   "Ka kita pud ang Ginoo nimo Cha, Praying sa studies nimo Cha. God Bless and Goodluck! Take care cha, kay imo na gi himong diet ang Engineering raba😁"
 ];
-const SIGNED = "— ☺️";
+const SIGNED = "— Cyyy";
 
-// 📷 Put your pictures in a "photos" folder next to this file and list them here
-const PHOTOS = [
-  { src: "1.jpg", caption: "" },
-  { src: "2.jpg", caption: "" },
-  { src: "3.jpg", caption: "" },
-  { src: "4.jpg", caption: ""}
-];
+// Note: Photos are now configured directly in index.html and style.css!
 
 // 🎵 Put your song in a "music" folder next to this file and set its name here
 const MUSIC = "music/song.mp3";
@@ -367,7 +361,7 @@ function proceedToLetter() {
     // Populate letter contents
     $('to').textContent = "Happy Birthday, " + NAME + " 🎂";
     $('body').innerHTML = LETTER.map((t) => "<p>" + t + "</p>").join("") + '<p class="sig">' + SIGNED + '</p>';
-    renderGallery();
+    initGallery();
 
     const letterElem = $('letter');
     letterElem.style.display = 'block';
@@ -383,48 +377,31 @@ function proceedToLetter() {
 }
 
 // ==========================================
-// 📸 Photo Gallery & Lightbox
+// 📸 Photo Gallery & Lightbox (Configured in HTML & CSS)
 // ==========================================
-function addPhoto(src, caption, i) {
-  const f = document.createElement('figure');
-  f.className = 'photo';
-  f.style.setProperty('--r', ((i % 2 ? 1 : -1) * (1 + Math.random() * 2)).toFixed(1) + 'deg');
+function initGallery() {
+  const photoFigures = document.querySelectorAll('.gallery .photo');
+  photoFigures.forEach((f) => {
+    f.tabIndex = 0;
+    f.setAttribute('role', 'button');
+    const img = f.querySelector('img');
+    const cap = f.querySelector('figcaption');
+    const caption = cap ? cap.textContent : (img ? img.alt : '');
 
-  const box = document.createElement('div');
-  box.className = 'img';
+    const open = () => {
+      if (img && img.src) openLB(img.src, caption);
+    };
 
-  const img = new Image();
-  img.alt = caption || '';
-  img.loading = 'lazy';
-  img.onerror = () => { box.textContent = '🌸'; };
-  img.src = src;
-  box.appendChild(img);
+    f.onclick = open;
+    f.onkeydown = (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        open();
+      }
+    };
+  });
 
-  const c = document.createElement('figcaption');
-  c.textContent = caption || '';
-
-  f.tabIndex = 0;
-  f.setAttribute('role', 'button');
-  const open = () => {
-    if (img.complete && img.naturalWidth) openLB(img.src, caption);
-  };
-  f.onclick = open;
-  f.onkeydown = (e) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      open();
-    }
-  };
-
-  f.append(box, c);
-  $('gallery').appendChild(f);
-}
-
-function renderGallery() {
-  $('gallery').innerHTML = '';
-  PHOTOS.forEach((p, i) => addPhoto(p.src, p.caption, i));
-
-  // Owner mode: open with #edit in URL to customize photos & song on the fly
+  // Owner mode: open with #edit in URL to customize preview photos
   if (location.hash === '#edit') {
     $('addBtn').hidden = false;
     $('addBtn').onclick = () => $('file').click();
@@ -440,14 +417,23 @@ function renderGallery() {
     };
 
     $('file').onchange = (e) => {
-      [...e.target.files].forEach((f, i) => {
+      [...e.target.files].forEach((f) => {
         const r = new FileReader();
-        r.onload = () => addPhoto(r.result, f.name.replace(/\.\w+$/, ''), i);
+        r.onload = () => {
+          const fig = document.createElement('figure');
+          fig.className = 'photo';
+          fig.innerHTML = `<div class="img"><img src="${r.result}" alt="${f.name.replace(/\.\w+$/, '')}"></div>`;
+          $('gallery').appendChild(fig);
+          initGallery();
+        };
         r.readAsDataURL(f);
       });
     };
   }
 }
+
+// Initialize gallery lightbox bindings on page load
+initGallery();
 
 // ==========================================
 // 🔍 Lightbox Modal Controls
