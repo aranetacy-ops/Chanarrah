@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Happy Birthday 🎂</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <canvas id="bg"></canvas>
+
+  <main class="stage">
+    <!-- Step 1: Login Card -->
+    <section class="card" id="login">
+      <div style="font-size:2.4rem">🎂</div>
+      <h1>Open Sesame Seed</h1>
+      <p>Enter your birthdate (MMDDYYYY) to open the shenanigans.</p>
+      <input id="pw" type="password" inputmode="numeric" maxlength="8" placeholder="••••••••" autocomplete="off">
+      <button id="go">Open my letter</button>
+      <div class="err" id="err"></div>
+    </section>
+
+    <!-- Step 2: Quiz / Question Card (shows after login) -->
+    <section class="card quiz-card hide" id="quiz" style="display:none;">
+      <div style="font-size:2.4rem">🏓</div>
+      <h3>Happy Birthday Cha!</h3>
+      <div id="qtext"></div>
+      <div class="qbtns" id="qbtns"></div>
+    </section>
+
+    <!-- Step 3: Main Birthday Letter & Gallery (shows after quiz completion) -->
+    <article class="letter" id="letter">
+      <div class="paper">
+        <h2 id="to"></h2>
+        <div id="body"></div>
+      </div>
+
+      <!-- Birthday Video Card -->
+      <section class="video-card">
+        <div class="video-wrapper">
+          <video id="bdayVideo" playsinline loop controls preload="auto">
+            <source src="Happybirthday.mp4" type="video/mp4">
+            <source src="Happy birthday.mp4" type="video/mp4">
+            <source src="Happy%20birthday.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      </section>
+
+      <h3 class="gal-title"> 📸</h3>
+      <div class="gallery" id="gallery"></div>
+      <button class="add" id="addBtn" hidden>+ Add photos (preview only)</button>
+      <button class="add" id="musicPick" hidden>🎵 Choose music (preview only)</button>
+      <input type="file" id="mfile" accept="audio/*" hidden>
+      <input type="file" id="file" accept="image/*" multiple hidden>
+    </article>
+  </main>
+
+  <audio id="music" loop preload="auto"></audio>
+  <button class="music" id="musicBtn" hidden aria-label="Play or pause music">🎵</button>
+
+  <!-- Lightbox Modal for Photos -->
+  <div class="lb" id="lb">
+    <button class="x" id="lbx" aria-label="Close">✕</button>
+    <img id="lbimg" alt="">
+    <p id="lbcap"></p>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
