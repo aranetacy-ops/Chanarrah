@@ -48,7 +48,28 @@
       </section>
 
       <h3 class="gal-title"> 📸</h3>
-      <div class="gallery" id="gallery"></div>
+      <div class="gallery" id="gallery">
+        <figure class="photo">
+          <div class="img">
+            <img src="c.jpg" alt="Memory" loading="lazy" onerror="if(!this.dataset.retry){this.dataset.retry=1;this.src='photos/c.jpg';}">
+          </div>
+        </figure>
+        <figure class="photo">
+          <div class="img">
+            <img src="h.jpg" alt="Memory" loading="lazy" onerror="if(!this.dataset.retry){this.dataset.retry=1;this.src='photos/h.jpg';}">
+          </div>
+        </figure>
+        <figure class="photo">
+          <div class="img">
+            <img src="a.jpg" alt="Memory" loading="lazy" onerror="if(!this.dataset.retry){this.dataset.retry=1;this.src='photos/a.jpg';}">
+          </div>
+        </figure>
+        <figure class="photo">
+          <div class="img">
+            <img src="l.jpg" alt="Memory" loading="lazy" onerror="if(!this.dataset.retry){this.dataset.retry=1;this.src='photos/l.jpg';}">
+          </div>
+        </figure>
+      </div>
       <button class="add" id="addBtn" hidden>+ Add photos (preview only)</button>
       <button class="add" id="musicPick" hidden>🎵 Choose music (preview only)</button>
       <input type="file" id="mfile" accept="audio/*" hidden>
