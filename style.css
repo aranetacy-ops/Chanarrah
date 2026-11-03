@@ -287,6 +287,11 @@ button:active {
   cursor: zoom-in;
 }
 
+.photo:nth-child(4n + 1) { --r: -2deg; }
+.photo:nth-child(4n + 2) { --r: 2deg; }
+.photo:nth-child(4n + 3) { --r: -1.5deg; }
+.photo:nth-child(4n + 4) { --r: 1.8deg; }
+
 .photo:hover {
   transform: rotate(0) scale(1.03);
 }
@@ -313,6 +318,10 @@ button:active {
   font-size: 0.8rem;
   text-align: center;
   font-style: italic;
+}
+
+.photo figcaption:empty {
+  display: none;
 }
 
 .add {
