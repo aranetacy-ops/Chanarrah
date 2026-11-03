@@ -9,7 +9,7 @@ const LETTER = [
   "Humana ra imong exam kay badminton na pud ta HAHAHA. bitaw chaaa padayon ra simong pag tuon, maka pressure sa? kita bitaw namo imong paningkamot Cha, Padayon ra gyud.",
   "Ka kita pud ang Ginoo nimo Cha, Praying sa studies nimo Cha. God Bless and Goodluck! Take care cha, kay imo na gi himong diet ang Engineering raba😁"
 ];
-const SIGNED = "— Cyyy";
+const SIGNED = "— ☺️";
 
 // 📷 Put your pictures in a "photos" folder next to this file and list them here
 const PHOTOS = [
